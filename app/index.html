@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="pickaday.js"></script>
+
+  <style>
+    .error {border: 1px solid blue; padding: 10px 15px; margin: 0 0 10px; border-radius: 10px; }
+    .error--warning {border: 1px solid red;}
+    .error--invalid {border: 1px solid green;}
+    .upload{
+      width: 50%;
+      margin: auto;
+    }
+    .upload-zone {
+      text-align: center;
+      border: dashed darkgrey 10px;
+      padding: 50px 100px;
+    }
+    .upload-zone a {
+      text-decoration: none;
+      background: rgba(0, 133, 215, 0.6);
+      color: #fff;
+      border-radius: 3px;
+      box-shadow: 0 3px 0 0 rgba(0, 133, 215, 1);
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      padding: 10px 15px;
+      margin-bottom: 3px;
+    }
+  </style>
+
+</head>
+<body>
+
+<!--  <div ng-app="myApp" ng-controller="MainController as main">-->
+<!--    <counter count="main.firstCount"></counter>-->
+<!--    <counter count="main.secondCount"></counter>-->
+<!--    <counter count="main.thirdCount"></counter>-->
+<!--  </div>-->
+
+<!--<div ng-app="myApp" ng-controller="ErrorController as errors">-->
+<!--  <div ng-repeat="error in errors.list"-->
+<!--       error-message-->
+<!--       type="{{error.type}}">-->
+<!--    {{ error.message }}-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div ng-app="myApp">-->
+<!--  <contact-card>-->
+<!--    <h1>Tom</h1>-->
+<!--    <p>Lorem ipsum</p>-->
+<!--  </contact-card>-->
+<!--  <contact-card>-->
+<!--    <h1>Mark</h1>-->
+<!--  </contact-card>-->
+<!--  <contact-card>-->
+<!--    <h1>Travis</h1>-->
+<!--    <p>Lorem ipsum</p>-->
+<!--  </contact-card>-->
+<!--</div>-->
+
+<!--<tabs ng-app="myApp">-->
+<!--  <tab label="One">-->
+<!--    Tab One Content-->
+<!--  </tab>-->
+<!--  <tab label="Two">-->
+<!--    Tab Two Content-->
+<!--  </tab>-->
+<!--  <tab label="Three">-->
+<!--    Tab Three Content-->
+<!--  </tab>-->
+<!--</tabs>-->
+
+<!--<file-upload ng-app="myApp"></file-upload>-->
+
+<!--<div ng-app="myApp" ng-controller="DateController as ctrl">-->
+<!--  Parent date: {{ctrl.date | date:'MMM d, yyyyy'}}-->
+<!--  <date-picker date="ctrl.date"></date-picker>-->
+<!--</div>-->
+
+<div ng-app="myApp" ng-controller="MainController as main">
+  <counter count="main.count"></counter>
+</div>
+
+
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="view1/view1.js"></script>
+  <script src="view2/view2.js"></script>
+  <script src="controllers/CounterController.js"></script>
+  <script src="controllers/MainController.js"></script>
+  <script src="controllers/ErrorController.js"></script>
+<!--  <script src="directives/Counter.js"></script>-->
+  <script src="controllers/counter.js"></script>
+  <script src="directives/ErrorMessage.js"></script>
+  <script src="directives/ContactCard.js"></script>
+  <script src="directives/FileUpload.js"></script>
+  <script src="directives/Tabs/Tab.js"></script>
+  <script src="directives/Tabs/Tabs.js"></script>
+  <script src="services/PikadayService.js"></script>
+  <script src="controllers/DateController.js"></script>
+  <script src="directives/DatePicker.js"></script>
+  <script src="core/version/version.js"></script>
+  <script src="core/version/version-directive.js"></script>
+  <script src="core/version/interpolate-filter.js"></script>
+</body>
+</html>
