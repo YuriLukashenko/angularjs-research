@@ -37,6 +37,9 @@
       padding: 10px 15px;
       margin-bottom: 3px;
     }
+
+    .parent {border: 1px solid red; padding: 25px}
+    .child {border: 1px solid blue; padding: 25px}
   </style>
 
 </head>
@@ -89,9 +92,27 @@
 <!--  <date-picker date="ctrl.date"></date-picker>-->
 <!--</div>-->
 
-<div ng-app="myApp" ng-controller="MainController as main">
-  <counter count="main.count"></counter>
-</div>
+<!--<div ng-app="myApp" ng-controller="MainController as main">-->
+<!--  <counter count="main.count"></counter>-->
+<!--</div>-->
+
+<!--<div ng-app="myApp">-->
+<!--  <stateful-component></stateful-component>-->
+<!--</div>-->
+
+  <div class="parent" ng-controller="ContactController as contact">
+    <a href="" ng-click="contact.logoutUser();">
+      Logout
+    </a>
+    <ul>
+      <li ng-repeat="item in contact.contacts">
+        <p>Name: {{item.name}}</p>
+        <p>Email: {{item.email}}</p>
+      </li>
+    </ul>
+    <user-manager></user-manager>
+  </div>
+
 
 
   <script src="lib/angular/angular.js"></script>
@@ -115,5 +136,11 @@
   <script src="core/version/version.js"></script>
   <script src="core/version/version-directive.js"></script>
   <script src="core/version/interpolate-filter.js"></script>
+
+<!--  <script src="components/stateful-component.js"></script>-->
+<!--  <script src="components/stateless-component.js"></script>-->
+
+<script src="controllers/ContactController.js"></script>
+<script src="components/UserManager.js"></script>
 </body>
 </html>
