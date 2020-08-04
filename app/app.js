@@ -6,6 +6,7 @@ angular.module('myApp', [
   'myApp.view1',
   'myApp.view2',
   'myApp.version',
+  'ngMessages',
   'ctrl'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {

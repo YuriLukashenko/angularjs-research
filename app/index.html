@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="app.css">
   <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
   <script src="pickaday.js"></script>
+  <script src="lib/angular/angular.js"></script>
+  <script src="angular-messages.js"></script>
 
   <style>
     .error {border: 1px solid blue; padding: 10px 15px; margin: 0 0 10px; border-radius: 10px; }
@@ -40,8 +42,21 @@
 
     .parent {border: 1px solid red; padding: 25px}
     .child {border: 1px solid blue; padding: 25px}
-  </style>
+    .outer {border: 1px solid green; padding: 25px}
 
+    .model {
+      background: #f9f9f9;
+      padding: 25px;
+      margin: 20px 0;
+    }
+
+    form .ng-dirty.ng-invalid {
+      border: 1px solid red;
+    }
+    form .ng-valid {
+      border: 1px solid green;
+    }
+  </style>
 </head>
 <body>
 
@@ -100,22 +115,123 @@
 <!--  <stateful-component></stateful-component>-->
 <!--</div>-->
 
-  <div class="parent" ng-controller="ContactController as contact">
-    <a href="" ng-click="contact.logoutUser();">
-      Logout
-    </a>
-    <ul>
-      <li ng-repeat="item in contact.contacts">
-        <p>Name: {{item.name}}</p>
-        <p>Email: {{item.email}}</p>
-      </li>
-    </ul>
-    <user-manager></user-manager>
+<!--  <div ng-app="myApp">-->
+<!--    <div class="parent" ng-controller="ContactController as contact">-->
+<!--      <a href="" ng-click="contact.logoutUser();">-->
+<!--        Logout-->
+<!--      </a>-->
+<!--      <ul>-->
+<!--        <li ng-repeat="item in contact.contacts">-->
+<!--          <p>Name: {{item.name}}</p>-->
+<!--          <p>Email: {{item.email}}</p>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--      <user-manager></user-manager>-->
+<!--    </div>-->
+<!--    <outer-component></outer-component>-->
+<!--  </div>-->
+
+<!--    <div ng-app="myApp" ng-controller="HTMLController as html">-->
+<!--      <div html-editor contenteditable ng-model="html.content">-->
+<!--        Some-->
+<!--      </div>-->
+<!--      <p> {{ html.content}}</p>-->
+<!--      <div>-->
+<!--        <a href="" ng-click="html.reset()">-->
+<!--          Reset-->
+<!--        </a>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+  <div ng-app="myApp">
+    <form
+      novalidate
+      name="register"
+      ng-controller="CheckoutController as checkout"
+      ng-submit="checkout.onSubmit();">
+      <h4>Checkout</h4>
+      <p>Fill in your details to complete your order</p>
+
+      <label>
+        Username
+        <input type="text"
+               name="username"
+               placeholder="Username"
+               ng-model="checkout.details.username"
+               ng-minlength="2"
+               required="required">
+      </label>
+
+      <div ng-if="register.username.$touched"
+           ng-messages="register.username.$error">
+        <div ng-message="minlength">
+          Minimum of 2 characters
+        </div>
+        <div ng-messages-include="validateTemplate.html"></div>
+      </div>
+
+      <label>
+        Password
+        <input type="password"
+               name="password"
+               placeholder="Password"
+               ng-model="checkout.details.password"
+               ng-minlength="8"
+               ng-maxlength="20"
+               ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/"
+               required="required">
+      </label>
+
+      <div ng-if="register.password.$touched"
+           ng-messages="register.password.$error"
+           ng-messages-multiple>
+        <div ng-message-exp="['minlength', 'maxlength']">
+          Min 8, Max 20 chars
+        </div>
+        <div ng-messages-include="validateTemplate.html"></div>
+        <div ng-repeat="error in checkout.passwordErrors">
+          <div ng-message-exp="error.type">
+            {{ error.text }}
+          </div>
+        </div>
+      </div>
+
+      <label>
+        Coupon
+        <input type="text"
+               name="coupon"
+               placeholder="Coupon"
+               ng-model="checkout.details.coupon"
+               required="required"
+               coupon-format>
+      </label>
+
+      <div ng-if="register.coupon.$touched"
+           ng-messages="register.coupon.$error">
+        <div ng-message="required">
+          This is field required!
+        </div>
+        <div ng-message="coupon">
+          Invalid coupon!
+          Must be characters, followed by underscore and 2 digits
+        </div>
+      </div>
+
+
+<!--      <pre>{{register.coupon.$error | json}} </pre>-->
+
+      <button type="submit">
+        Checkout
+      </button>
+
+      <div>
+        <pre>{{ checkout.details | json}}</pre>
+      </div>
+    </form>
+
   </div>
 
-
-
-  <script src="lib/angular/angular.js"></script>
   <script src="lib/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
   <script src="view1/view1.js"></script>
@@ -140,7 +256,14 @@
 <!--  <script src="components/stateful-component.js"></script>-->
 <!--  <script src="components/stateless-component.js"></script>-->
 
-<script src="controllers/ContactController.js"></script>
-<script src="components/UserManager.js"></script>
+<!--<script src="controllers/ContactController.js"></script>-->
+<!--<script src="components/OuterComponent.js"></script>-->
+<!--<script src="components/UserManager.js"></script>-->
+
+<!--<script src="directives/HTMLEditor.js"></script>-->
+<!--<script src="controllers/HTMLController.js"></script>-->
+
+<script src="directives/couponFormat.js"></script>
+<script src="controllers/CheckoutController.js"></script>
 </body>
 </html>
